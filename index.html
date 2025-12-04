@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeptunesPrideCalculatorWeb</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/index.js"></script>
 </head>
+
 <body>
-    <h1>NeptunesPrideCalculatorWeb</h1>
+    <div class="container">
+        <div class="form-box">
+            <h1>Neptune's Pride Calculator</h1>
+
+            <!-- Player Stance -->
+            <div class="section horizontal-flex">
+                <div class="group radio vertical-flex">
+                    <label for="AttackStance">Attack</label>
+                    <input type="radio" name="Stance" value="Attack" id="AttackStance" checked>
+                </div>
+                <div class="group radio vertical-flex">
+                    <label for="DefenceStance">Defence</label>
+                    <input type="radio" name="Stance" value="Defence" id="DefenceStance">
+                </div>
+            </div>
+
+            <!-- Player stats -->
+            <div class="section horizontal-flex">
+                <div class="group input vertical-flex">
+                    <label for="PlayerFighters">Player Fighters:</label>
+                    <input type="number" min="1" value="1" id="PlayerFighters" placeholder="Player fighter count"
+                        oninput="DoCalculation(this)">
+                </div>
+                <div class="group input vertical-flex">
+                    <label for="PlayerWeapons">Player Weapons:</label>
+                    <input type="number" min="1" value="1" id="PlayerWeapons" placeholder="Player weapons level">
+                </div>
+            </div>
+
+            <!-- Enemy Stats -->
+            <div class="section horizontal-flex">
+                <div class="group input vertical-flex">
+                    <label for="EnemyFighters">Enemy Fighters:</label>
+                    <input type="number" min="1" value="1" id="EnemyFighters" placeholder="Enemy fighter count">
+                </div>
+                <div class="group input vertical-flex">
+                    <label for="EnemyWeapons">Enemy Weapons:</label>
+                    <input type="number" min="1" value="1" id="EnemyWeapons" placeholder="Enemy weapons level">
+                </div>
+            </div>
+
+            <!-- Defender Production stats -->
+            <div class="section vertical-flex">
+                <div class="group toggle-header horizontal-flex">
+                    <input type="checkbox" id="DefenderProductionToggle" checked oninput="ToggleDefenderProduction()">
+                    <label for="DefenderProduction">Defender Production:</label>
+                </div>
+                <div id="DefenderProductionContent" class="section toggle-section vertical-flex">    
+                    <div class="group input vertical-flex">
+                        <label for="DefenderProductionRate">Production (per tick):</label>
+                        <input type="number" min="0" value="0" id="DefenderProductionRate" placeholder="Rate of ship production" step="0.1">
+                    </div>
+                    <div class="group input vertical-flex">
+                        <label for="DefenderProductionRate">Current Progress:</label>
+                        <input type="number" min="0" value="0" id="DefenderProductionProgresss" placeholder="Rate of ship production" step="0.1">
+                    </div>
+                    <div class="group input vertical-flex">
+                        <label for="DefenderProductionRate">Star Distance (in ticks):</label>
+                        <input type="number" min="0" value="0" id="StarDistance" placeholder="Rate of ship production" step="1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Combat Output -->
+            <div class="section horizontal-flex">
+                <div class="group output vertical-flex">
+                    <label for="Outcome">Output:</label>
+                    <input readonly="true" id="Outcome">
+                </div>
+            </div>
+
+            <!-- Minimum fighters needed for player victory -->
+            <div class="section horizontal-flex">
+                <div class="group output vertical-flex">
+                    <label for="MinFighters">Minimum fighters:</label>
+                    <input readonly="true" id="MinFighters">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
