@@ -1,19 +1,15 @@
 
 
 function DoCalculation(caller) {
-    let PlayerFighters = document.getElementById("PlayerFighters")
-    console.log(`${caller.id} value changed to ${PlayerFighters.value}`)
+    let PlayerFighters = document.getElementById("player-fighters")
+    console.log(`${caller.name} value changed to ${caller.value}`)
     return
 }
 
 function ToggleDefenderProduction() {
-    let shouldHide = !document.getElementById("DefenderProductionToggle").checked
-    let parent = document.getElementById("DefenderProductionContent")
-    let children = parent.children
-    console.log(`Setting children hidden=${shouldHide}`)
-    for (let i = 0; i < children.length; i++) {
-        console.log(`Child ${i + 1}: ${children[i]}`)
-        if (shouldHide) { children[i].style.display = 'none'; }
-        else { children[i].style.display = 'block'; }
-    }
+    let shouldHide = !document.getElementById("production-toggle").checked
+    let parent = document.getElementById("production-inputs")
+    console.log(`${shouldHide ? 'hiding' : 'showing'} elements`)
+    if (shouldHide) { parent.style.display = 'none'; }
+    else { parent.style.display = 'grid'; } // it might be better to have a div dedicated to showing or hiding the content
 }

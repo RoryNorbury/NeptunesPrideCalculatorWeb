@@ -9,86 +9,84 @@
     <script src="js/index.js"></script>
 </head>
 
-<body>
-    <div class="container">
-        <div class="form-box">
-            <h1>Neptune's Pride Calculator</h1>
-
-            <!-- Player Stance -->
-            <div class="section horizontal-flex">
-                <div class="group radio vertical-flex">
+<body class="column">
+    <div class="form-box column">
+        <h1>Neptune's Pride Calculator</h1>
+        <fieldset>
+            <legend>
+                <h2>Stance</h2>
+            </legend>
+            <div class="row">
+                <div class="input-group">
+                    <input type="radio" name="Stance" value="Attack" id="AttackStance" checked oninput="DoCalculation(this)">
                     <label for="AttackStance">Attack</label>
-                    <input type="radio" name="Stance" value="Attack" id="AttackStance" checked>
                 </div>
-                <div class="group radio vertical-flex">
-                    <label for="DefenceStance">Defence</label>
-                    <input type="radio" name="Stance" value="Defence" id="DefenceStance">
+                <div class="input-group">
+                    <input type="radio" name="Stance" value="Defend" id="DefendStance" oninput="DoCalculation(this)">
+                    <label for="DefendStance">Defend</label>
                 </div>
             </div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                <h2>Stats</h2>
+            </legend>
+            <div class="row">
+                <div class="column input-group">
+                    <label for="player-fighters">Player Fighters</label>
+                    <input type="number" min="1" value="1" id="player-fighters" name="player-fighters" oninput="DoCalculation(this)">
+                </div>
+                <div class="column input-group">
+                    <label for="player-weapons">Player Weapons</label>
+                    <input type="number" min="1" value="1" id="player-weapons" name="player-weapons" oninput="DoCalculation(this)">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column input-group">
+                    <label for="enemy-fighters">Enemy Fighters</label>
+                    <input type="number" min="1" value="1" id="enemy-fighters" name="enemy-fighters" oninput="DoCalculation(this)">
+                </div>
+                <div class="column input-group">
+                    <label for="enemy-weapons">Enemy Weapons</label>
+                    <input type="number" min="1" value="1" id="enemy-weapons" name="enemy-weapons" oninput="DoCalculation(this)">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>
+                <div class="input-group row">
+                    <input type="checkbox" id="production-toggle" name="production-toggle" checked oninput="ToggleDefenderProduction(); DoCalculation(this)">
+                    <label for="production-toggle">
+                        <h2>Defender Production:</h2>
+                    </label>
+                </div>
+            </legend>
+            <div class="input-group grid" id="production-inputs">
+                    <label for="defender-production-rate">Production (per tick):</label>
+                    <input type="number" min="0" value="0" step="0.1" id="defender-production-rate" name="defender-production-rate" oninput="DoCalculation(this)">
 
-            <!-- Player stats -->
-            <div class="section horizontal-flex">
-                <div class="group input vertical-flex">
-                    <label for="PlayerFighters">Player Fighters:</label>
-                    <input type="number" min="1" value="1" id="PlayerFighters" placeholder="Player fighter count"
-                        oninput="DoCalculation(this)">
-                </div>
-                <div class="group input vertical-flex">
-                    <label for="PlayerWeapons">Player Weapons:</label>
-                    <input type="number" min="1" value="1" id="PlayerWeapons" placeholder="Player weapons level">
-                </div>
-            </div>
+                    <label for="defender-production-progress">Current Progress:</label>
+                    <input type="number" min="0" value="0" step="0.1" id="defender-production-progress" name="defender-production-progress" oninput="DoCalculation(this)">
 
-            <!-- Enemy Stats -->
-            <div class="section horizontal-flex">
-                <div class="group input vertical-flex">
-                    <label for="EnemyFighters">Enemy Fighters:</label>
-                    <input type="number" min="1" value="1" id="EnemyFighters" placeholder="Enemy fighter count">
-                </div>
-                <div class="group input vertical-flex">
-                    <label for="EnemyWeapons">Enemy Weapons:</label>
-                    <input type="number" min="1" value="1" id="EnemyWeapons" placeholder="Enemy weapons level">
-                </div>
+                    <label for="star-distance">Star Distance (in ticks):</label>
+                    <input type="number" min="0" value="0" step="1" id="star-distance" name="star-distance" oninput="DoCalculation(this)">
             </div>
-
-            <!-- Defender Production stats -->
-            <div class="section vertical-flex">
-                <div class="group toggle-header horizontal-flex">
-                    <input type="checkbox" id="DefenderProductionToggle" checked oninput="ToggleDefenderProduction()">
-                    <label for="DefenderProduction">Defender Production:</label>
-                </div>
-                <div id="DefenderProductionContent" class="section toggle-section vertical-flex">    
-                    <div class="group input vertical-flex">
-                        <label for="DefenderProductionRate">Production (per tick):</label>
-                        <input type="number" min="0" value="0" id="DefenderProductionRate" placeholder="Rate of ship production" step="0.1">
-                    </div>
-                    <div class="group input vertical-flex">
-                        <label for="DefenderProductionRate">Current Progress:</label>
-                        <input type="number" min="0" value="0" id="DefenderProductionProgresss" placeholder="Rate of ship production" step="0.1">
-                    </div>
-                    <div class="group input vertical-flex">
-                        <label for="DefenderProductionRate">Star Distance (in ticks):</label>
-                        <input type="number" min="0" value="0" id="StarDistance" placeholder="Rate of ship production" step="1">
-                    </div>
-                </div>
+        </fieldset>
+        <fieldset>
+            <legend><h2>Outcome</h2></legend>
+            <div class="input-group column">
+                <p class="output-title">Fight Result</p>
+                <p class="output-text" id="fight-result"></p>
             </div>
-
-            <!-- Combat Output -->
-            <div class="section horizontal-flex">
-                <div class="group output vertical-flex">
-                    <label for="Outcome">Output:</label>
-                    <input readonly="true" id="Outcome">
-                </div>
+            <div class="input-group column">
+                <p class="output-title">Minimum fighters for victory</p>
+                <p class="output-text" id="min-fighters"></p>
             </div>
-
-            <!-- Minimum fighters needed for player victory -->
-            <div class="section horizontal-flex">
-                <div class="group output vertical-flex">
-                    <label for="MinFighters">Minimum fighters:</label>
-                    <input readonly="true" id="MinFighters">
-                </div>
+            <div class="input-group column">
+                <p class="output-title">Minimum for perfect attack</p>
+                <p class="output-text" id="perfect-min-fighters"></p>
             </div>
-        </div>
+        </fieldset>
     </div>
 </body>
 
