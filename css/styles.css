@@ -34,6 +34,7 @@ body {
     border-radius: 8px;
     width: auto;
     padding: 40px;
+    padding-bottom: 24px;
     background-color: var(--panel);
 
     h1 {
