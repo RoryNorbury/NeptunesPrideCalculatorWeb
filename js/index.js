@@ -27,7 +27,7 @@ star-distance: ${StarDistance}
 do-production: ${DoProduction}`)
 
     // hide perfect attack output if defending, as it does not apply
-    let perfectParent = document.getElementById("perfect-min-fighters").parentElement
+    let perfectParent = document.getElementById("perfect-min-fighters-total").parentElement
     if (Stance == "attack") { perfectParent.style.display = 'flex' }
     else if (Stance == 'defend') { perfectParent.style.display = 'none' }
 
@@ -71,10 +71,11 @@ do-production: ${DoProduction}`)
         }
 
         // output results to HTML
-        document.getElementById("min-fighters").innerText = minFighters
-        document.getElementById("perfect-min-fighters").innerText = perfectMinFighters
         document.getElementById("fight-result").innerText = victor + ' wins with ' + (victor == 'Player' ? af : df) + ' fighters remaining.'
-
+        document.getElementById("min-fighters").innerText = minFighters
+        document.getElementById("perfect-min-fighters-total").innerText = 'Total: ' + perfectMinFighters
+        document.getElementById("perfect-min-fighters-attacking").innerText = 'Attacking: ' + minFighters
+        document.getElementById("perfect-min-fighters-defending").innerText = 'Defending: ' + (perfectMinFighters - minFighters)
     }
     else if (Stance == 'defend') {
         // ensure values are in correct range
@@ -120,14 +121,10 @@ do-production: ${DoProduction}`)
         }
 
         // output results to HTML
-        document.getElementById("min-fighters").innerText = minFighters
-        document.getElementById("perfect-min-fighters").innerText = perfectMinFighters
         document.getElementById("fight-result").innerText = victor + ' wins with ' + (victor == 'Player' ? df : af) + ' fighters remaining.'
+        document.getElementById("min-fighters").innerText = minFighters
+        document.getElementById("perfect-min-fighters-total").innerText = perfectMinFighters
     }
-
-
-
-    return
 }
 
 function ToggleDefenderProduction() {
