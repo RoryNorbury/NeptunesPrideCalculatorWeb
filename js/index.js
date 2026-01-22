@@ -38,6 +38,9 @@ do-production: ${DoProduction}`)
         let aw = (PlayerWeapons >= 1) ? PlayerWeapons : 1
         let dw = (EnemyWeapons >= 1) ? EnemyWeapons : 1
 
+        // account for defender weapons advantage
+        dw += 1
+
         // ships produced during transit
         if (DoProduction) {
             let produced = Math.floor(ProductionProgress + (ProductionRate * StarDistance))
@@ -83,6 +86,9 @@ do-production: ${DoProduction}`)
         let df = (EnemyFighters >= 1) ? EnemyFighters : 1
         let aw = (PlayerWeapons >= 1) ? PlayerWeapons : 1
         let dw = (EnemyWeapons >= 1) ? EnemyWeapons : 1
+
+        // account for defender weapons advantage
+        dw += 1
 
         // ships produced during transit
         let produced = 0
