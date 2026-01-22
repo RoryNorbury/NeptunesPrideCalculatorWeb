@@ -82,10 +82,10 @@ do-production: ${DoProduction}`)
     }
     else if (Stance == 'defend') {
         // ensure values are in correct range
-        let af = (PlayerFighters >= 1) ? PlayerFighters : 1
-        let df = (EnemyFighters >= 1) ? EnemyFighters : 1
-        let aw = (PlayerWeapons >= 1) ? PlayerWeapons : 1
-        let dw = (EnemyWeapons >= 1) ? EnemyWeapons : 1
+        let af = (EnemyFighters >= 1) ? EnemyFighters : 1
+        let df = (PlayerFighters >= 1) ? PlayerFighters : 1
+        let aw = (EnemyWeapons >= 1) ? EnemyWeapons : 1
+        let dw = (PlayerWeapons >= 1) ? PlayerWeapons : 1
 
         // account for defender weapons advantage
         dw += 1
